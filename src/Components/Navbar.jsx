@@ -1,27 +1,55 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { useAuthContext } from "../context/AuthContext";
 import { FaBars } from "react-icons/fa";
+import { doc, updateDoc } from "firebase/firestore";
+import Loading from "./Loading";
 const Navbar = () => {
   const { user } = useAuthContext();
+  const [menu, setMenu] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const clear = async () => {
+    setMenu(false);
+    if (!window.confirm()) return;
+    setLoading(true);
+
+    await updateDoc(doc(db, "users", user.uid), {
+      tasks: [],
+    });
+
+    setLoading(false);
+  };
+
   return (
     <div className="navbar">
+      {loading && <Loading />}
       <div className="container">
-        <button type="button" className="toggler">
+        <button
+          type="button"
+          className="toggler"
+          onClick={() => setMenu((m) => !m)}
+        >
           <FaBars />
         </button>
+        <ul className={`menu${menu ? " active" : ""}`}>
+          <li onClick={clear}>clear tasks</li>
+          <li>toggle mode</li>
+        </ul>
+        {menu && <div className="layer" onClick={() => setMenu(false)}></div>}
         <nav>
-          <Link to="/">home</Link>
-          <Link to="/add-task">add task</Link>
-          <Link to="/delete-task">delete task</Link>
-          <Link to="/edit-task">edit task</Link>
+          <NavLink end to="/">
+            home
+          </NavLink>
+          <NavLink to="/add-task">add task</NavLink>
+          <NavLink to="/delete-task">delete task</NavLink>
+          <NavLink to="/edit-task">edit task</NavLink>
         </nav>
         <button onClick={() => signOut(auth)} className="logout">
           logout
         </button>
-        {/* <h3>Hello {user.displayName.split(' ')[0]}</h3> */}
       </div>
     </div>
   );

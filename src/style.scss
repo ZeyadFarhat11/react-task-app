@@ -11,6 +11,11 @@ $light-green: #ace9bb;
     font-family: 'Nunito', sans-serif;
 }
 
+body {
+    min-height: 100vh;
+    background-color: $dark;
+}
+
 .formContainer {
     height: 100vh;
     display: flex;
@@ -74,26 +79,28 @@ $light-green: #ace9bb;
             .error {
                 color: rgb(189, 11, 11);
             }
-            button {
-                width: fit-content;
-                padding: 10px 30px;
-                border-radius: 15px;
-                font-size: 18px;
-                font-weight: bold;
-                border: none;
-                background-color: #3fe068;
-                color: $dark;
-                margin-top: 20px;
-                cursor: pointer;
-                box-shadow: 0 5px #279242;
-                transition: .1s;
-                &:hover {
-                    box-shadow: none;
-                    
-                    translate: 0 5px;
-                }
-            }
+
         }
+    }
+}
+
+.btn {
+    width: fit-content;
+    padding: 10px 30px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    background-color: #3fe068;
+    color: $dark;
+    margin-top: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px #279242;
+    transition: .1s;
+    &:hover {
+        box-shadow: none;
+        
+        translate: 0 5px;
     }
 }
 
@@ -137,10 +144,11 @@ $light-green: #ace9bb;
     background-color: $dark;
     .container {
         height: 80px;
-        width: min(1200px, calc(100% - 30px));
+        width: min(1000px, calc(100% - 30px));
         margin: 0 auto;
         display: flex;
         align-items: center;
+        position: relative;
         .toggler {
             font-size: 25px;
             background-color: transparent;
@@ -161,8 +169,7 @@ $light-green: #ace9bb;
                 font-size: 18px;
                 font-weight: bold;
                 position: relative;
-                &:hover::before {
-                    content: '';
+                &::before {
                     position: absolute;
                     bottom: -2px;
                     left: 0;
@@ -170,6 +177,12 @@ $light-green: #ace9bb;
                     height: 2px;
                     background-color: #ccc;
                     border-radius: 5px;
+                }
+                &:hover::before {
+                    content: '';
+                }
+                &.active::before {
+                    content: '';
                 }
             }
         }
@@ -188,6 +201,129 @@ $light-green: #ace9bb;
                 color: $dark;
                 border-color: transparent;
             }
+        }
+
+        .menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            translate: 0 60px;
+            z-index: -1;
+            opacity: 0;
+            transition: .3s;
+            
+            li {
+                background-color: $dark;
+                color: #fff;
+                padding: 15px 20px;
+                cursor: pointer;
+                transition: .2s;
+                &:hover {
+                    background-color: rgb(65, 65, 65);
+                }
+            }
+
+            &.active {
+                z-index: 12;
+                opacity: 1;
+                translate: 0 20px;
+            }
+        }
+    }
+}
+
+.layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.taskList {
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    .task {
+        text-align: center;
+        padding: 40px;
+        background-color: $dark;
+        position: relative;
+        h3 {
+            color: #fff;
+            font-size: 30px;
+        }
+        .boxes {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            .box {
+                display: block;
+                border: 1px solid rgba(255, 255, 255, 0.5);
+                width: 35px;
+                height: 35px;
+                border-radius: 5px;
+                &:hover {
+                    background-color: #ccc;
+                    cursor: pointer;
+                }
+            }
+        }
+        .copy {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.2);
+            background-color: transparent;
+            border: none;
+            outline: none;
+            font-size: 25px;
+            transition: .2s;
+            cursor: pointer;
+            &:hover {
+                color: rgba(255, 255, 255, 0.6);
+            }
+        }
+    }
+}
+
+.customForm {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 50px;
+    flex-direction: column;
+    gap: 20px;
+    input {
+        width: 500px;
+        padding: 10px;
+        font-size: 18px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+        border-bottom: 1px solid #fff;
+        text-transform: none;
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: capitalize;
+        }
+        &:focus {
+            border-color: #3fe068;
+        }
+        &:valid {
+            border-color: #3fe068;
         }
     }
 }
