@@ -18,9 +18,9 @@ const Signup = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    console.log(
-      `try to signup name: ${name}, email: ${email}, password: ${password}`
-    );
+    // console.log(
+    //   `try to signup name: ${name}, email: ${email}, password: ${password}`
+    // );
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (cred) => {

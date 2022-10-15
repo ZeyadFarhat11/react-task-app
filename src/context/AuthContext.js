@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      console.log(`Auth State Change`, user);
+      // console.log(`Auth State Change`, user);
       setUser(user);
       if (window.document.location.href.match(/login/)) {
         navigate("/", { replace: true });
@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
     const unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
       const { tasks } = doc.data();
       setTasks(tasks);
-      console.log(`Doc Changed doc:`, doc.data());
+      // console.log(`Doc Changed doc:`, doc.data());
     });
 
     return () => unsub();

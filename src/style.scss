@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
 
+@mixin laptop {
+    @media (max-width: 992px) {
+        @content
+    }
+}
+@mixin tablet {
+    @media (max-width: 768px) {
+        @content
+    }
+}
+@mixin mobile {
+    @media (max-width: 420px) {
+        @content
+    }
+}
+
 $dark: #222;
 $light-green: #ace9bb;
 
@@ -81,6 +97,20 @@ body {
             }
 
         }
+        @include tablet {
+            padding: 30px;
+            h2 {
+                font-size: 30px;
+            }
+            .form-links {
+                a {
+                    font-size: 16px;
+                }
+            }
+            form input {
+                font-size: 16px;
+            }
+        }
     }
 }
 
@@ -101,6 +131,10 @@ body {
         box-shadow: none;
         
         translate: 0 5px;
+    }
+    @include tablet {
+        font-size: 16px;
+        padding: 10px 20px;
     }
 }
 
@@ -158,10 +192,14 @@ body {
             margin-right: 100px;
             color: #fff;
             cursor: pointer;
+            @include tablet {
+                margin-right: 0;
+            }
         }
         nav {
             flex-grow: 1;
             display: flex;
+            flex-wrap: wrap;
             gap: 20px;
             a {
                 text-decoration: none;
@@ -185,6 +223,19 @@ body {
                     content: '';
                 }
             }
+            @include tablet {
+                position: absolute;
+                top: 100%;
+                z-index: 9;
+                width: 100%;
+                justify-content: center;
+            }
+            @include mobile {
+                gap: 10px;
+                a {
+                    font-size: 16px;
+                }
+            }
         }
         .logout {
             font-size: 18px;
@@ -200,6 +251,11 @@ body {
                 background-color: rgb(194, 12, 12);
                 color: $dark;
                 border-color: transparent;
+            }
+            @include tablet {
+                margin-left: auto;
+                font-size: 14px;
+                padding: 5px 10px;
             }
         }
 
@@ -249,18 +305,35 @@ body {
 }
 
 .taskList {
-    background-color: #fff;
+    background-color: $dark;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1px;
+    @include tablet {
+        grid-template-columns: 1fr;
+        padding-top: 50px;
+        .task {
+            border-top: none !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-bottom: 1px solid #fff !important;
+        }
+    }
     .task {
         text-align: center;
         padding: 40px;
         background-color: $dark;
         position: relative;
+        &:nth-child(odd) {
+            border-right: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+        }
+        &:nth-child(even) {
+            border-bottom: 1px solid #fff;
+        }
         h3 {
             color: #fff;
-            font-size: 30px;
+            font-size: 25px;
+            font-family: cursive, sans-serif;
         }
         .boxes {
             display: flex;
@@ -277,6 +350,10 @@ body {
                 &:hover {
                     background-color: #ccc;
                     cursor: pointer;
+                }
+                &.active {
+                    background-color: #279242;
+                    border-color: transparent;
                 }
             }
         }
@@ -295,6 +372,21 @@ body {
                 color: rgba(255, 255, 255, 0.6);
             }
         }
+        @include mobile {
+            h3 {
+                font-size: 22px;
+            }
+            .boxes {
+                gap: 5px;
+                .box {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+            .copy {
+                font-size: 18px;
+            }
+        }
     }
 }
 
@@ -305,8 +397,9 @@ body {
     padding: 50px;
     flex-direction: column;
     gap: 20px;
+    width: min(500px, 100%);
     input {
-        width: 500px;
+        width: 100%;
         padding: 10px;
         font-size: 18px;
         background-color: transparent;
@@ -325,5 +418,11 @@ body {
         &:valid {
             border-color: #3fe068;
         }
+        @include tablet {
+            font-size: 16px;
+        }
+    }
+    @include tablet {
+        padding: 50px 15px;
     }
 }
