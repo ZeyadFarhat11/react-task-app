@@ -308,6 +308,7 @@ body {
     background-color: $dark;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 80px);
     @include tablet {
         grid-template-columns: 1fr;
         padding-top: 50px;
@@ -320,15 +321,12 @@ body {
     }
     .task {
         text-align: center;
-        padding: 40px;
+        padding: 20px;
         background-color: $dark;
         position: relative;
+        border-top: 1px solid #fff;
         &:nth-child(odd) {
             border-right: 1px solid #fff;
-            border-bottom: 1px solid #fff;
-        }
-        &:nth-child(even) {
-            border-bottom: 1px solid #fff;
         }
         h3 {
             color: #fff;
@@ -424,5 +422,44 @@ body {
     }
     @include tablet {
         padding: 50px 15px;
+    }
+}
+
+.sort-tasks {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    .task {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        min-height: 100px;
+        position: relative;
+        width: min(400px, 100%);
+        color: #fff;
+        .tools {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+            button {
+                background-color: transparent;
+                color: #fff;
+                border: 1px solid #fff;
+                width: 30px;
+                height: 30px;
+                display: grid;
+                place-items: center;
+                cursor: pointer;
+                border-radius: 3px;
+                transition: .2s;
+                &:hover {
+                    color: #222;
+                    background-color: #fff;
+                }
+            }
+        }
     }
 }

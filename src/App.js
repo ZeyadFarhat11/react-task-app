@@ -8,6 +8,8 @@ import Login from "./Components/Login";
 import RequireUser from "./Components/RequireUser";
 import Signup from "./Components/Signup";
 import "./style.scss";
+import SortTasks from "./Components/SortTasks";
+import Tables from "./Components/Tables";
 
 function App() {
   return (
@@ -20,9 +22,11 @@ function App() {
           </RequireUser>
         }
       >
-        <Route path="add-task" element={<AddTask />} />
-        <Route path="edit-task" element={<EditTask />} />
-        <Route path="delete-task" element={<DeleteTask />} />
+        <Route path="add" element={<AddTask />} />
+        <Route path="edit" element={<EditTask />} />
+        <Route path="delete" element={<DeleteTask />} />
+        <Route path="sort" element={<SortTasks />} />
+        <Route path="tables" element={<Tables />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />

@@ -43,9 +43,11 @@ const Navbar = () => {
           <NavLink end to="/">
             home
           </NavLink>
-          <NavLink to="/add-task">add task</NavLink>
-          <NavLink to="/delete-task">delete task</NavLink>
-          <NavLink to="/edit-task">edit task</NavLink>
+          <NavLink to="/add">add task</NavLink>
+          <NavLink to="/delete">delete task</NavLink>
+          <NavLink to="/edit">edit task</NavLink>
+          <NavLink to="/sort">sort tasks</NavLink>
+          <NavLink to="/tables">tables</NavLink>
         </nav>
         <button onClick={() => signOut(auth)} className="logout">
           logout

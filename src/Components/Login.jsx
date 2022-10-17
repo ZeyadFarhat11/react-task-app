@@ -16,7 +16,7 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    console.log(`try to login email: ${email}, password: ${password}`);
+    // console.log(`try to login email: ${email}, password: ${password}`);
 
     signInWithEmailAndPassword(auth, email, password).catch(() => {
       setError(true);
