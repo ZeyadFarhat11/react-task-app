@@ -18,10 +18,15 @@ const Login = () => {
 
     // console.log(`try to login email: ${email}, password: ${password}`);
 
-    signInWithEmailAndPassword(auth, email, password).catch(() => {
-      setError(true);
-      setLoading(false);
-    });
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        window.localStorage.setItem("taskAppAuth", "true");
+      })
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+        window.localStorage.removeItem("taskAppAuth");
+      });
   };
   return (
     <div className="formContainer">

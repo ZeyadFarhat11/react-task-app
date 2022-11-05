@@ -10,28 +10,34 @@ import Signup from "./Components/Signup";
 import "./style.scss";
 import SortTasks from "./Components/SortTasks";
 import Tables from "./Components/Tables";
+import Loading from "./Components/Loading";
+import { useGlobalContext } from "./context/context";
 
 function App() {
+  const { loading } = useGlobalContext();
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <RequireUser>
-            <Home />
-          </RequireUser>
-        }
-      >
-        <Route path="add" element={<AddTask />} />
-        <Route path="edit" element={<EditTask />} />
-        <Route path="delete" element={<DeleteTask />} />
-        <Route path="sort" element={<SortTasks />} />
-        <Route path="tables" element={<Tables />} />
-      </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="*" element={<Error404 />} />
-    </Routes>
+    <>
+      {loading ? <Loading /> : null}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <RequireUser>
+              <Home />
+            </RequireUser>
+          }
+        >
+          <Route path="add" element={<AddTask />} />
+          <Route path="edit" element={<EditTask />} />
+          <Route path="delete" element={<DeleteTask />} />
+          <Route path="sort" element={<SortTasks />} />
+          <Route path="tables" element={<Tables />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+    </>
   );
 }
 

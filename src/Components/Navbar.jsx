@@ -23,6 +23,17 @@ const Navbar = () => {
     setLoading(false);
   };
 
+  const logout = () => {
+    try {
+      signOut(auth);
+      window.localStorage.removeItem("taskAppAuth");
+    } catch (err) {
+      console.log(`Error Signout =>`);
+      console.log(err);
+      console.log(err.code);
+    }
+  };
+
   return (
     <div className="navbar">
       {loading && <Loading />}
@@ -49,7 +60,7 @@ const Navbar = () => {
           <NavLink to="/sort">sort tasks</NavLink>
           <NavLink to="/tables">tables</NavLink>
         </nav>
-        <button onClick={() => signOut(auth)} className="logout">
+        <button onClick={logout} className="logout">
           logout
         </button>
       </div>

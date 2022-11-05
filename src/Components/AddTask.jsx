@@ -7,8 +7,7 @@ import Loading from "./Loading";
 
 const AddTask = () => {
   const { user } = useAuthContext();
-  const { tasks } = useGlobalContext();
-  const [loading, setLoading] = useState(false);
+  const { tasks, setLoading } = useGlobalContext();
 
   const randomID = () => {
     return "zxcvbnmasdfghjklpoiuytrewqZXCVBNMLKJHGFDSAPOIUYTREWQ0123456789"
@@ -36,7 +35,6 @@ const AddTask = () => {
 
   return (
     <form className="customForm" onSubmit={handleSubmit}>
-      {loading && <Loading />}
       <input type="text" placeholder="title" name="title" required />
       <input type="number" placeholder="size" name="size" required />
       <button type="submit" className="btn">

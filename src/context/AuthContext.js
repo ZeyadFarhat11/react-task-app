@@ -8,7 +8,7 @@ import { useGlobalContext } from "./context";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const { setTasks } = useGlobalContext();
+  const { setTasks, setLoading } = useGlobalContext();
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
@@ -17,6 +17,7 @@ const AuthProvider = ({ children }) => {
       // console.log(`Auth State Change`, user);
       setUser(user);
       if (window.document.location.href.match(/login/)) {
+        setLoading(false);
         navigate("/", { replace: true });
       }
     });

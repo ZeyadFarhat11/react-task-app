@@ -1,465 +1,472 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap");
 
 @mixin laptop {
-    @media (max-width: 992px) {
-        @content
-    }
+  @media (max-width: 992px) {
+    @content;
+  }
 }
 @mixin tablet {
-    @media (max-width: 768px) {
-        @content
-    }
+  @media (max-width: 768px) {
+    @content;
+  }
 }
 @mixin mobile {
-    @media (max-width: 420px) {
-        @content
-    }
+  @media (max-width: 420px) {
+    @content;
+  }
 }
 
 $dark: #222;
 $light-green: #ace9bb;
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-transform: capitalize;
-    font-family: 'Nunito', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+  font-family: "Nunito", sans-serif;
 }
 
 body {
-    min-height: 100vh;
-    background-color: $dark;
+  min-height: 100vh;
+  background-color: $dark;
 }
 
 .formContainer {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $light-green;
-    .formWrapper {
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        padding: 50px;
-        border-radius: 20px;
-        width: min(500px, calc(100% - 30px));
-        background: #fff;
-        h2 {
-            font-size: 40px;
-            color: $dark;
-            font-weight: 800;
-        }
-        .form-links {
-            display: flex;
-            margin: 20px 0;
-            gap: 5px;
-            a {
-                display: block;
-                flex-grow: 1;
-                padding: 10px;
-                font-size: 20px;
-                background-color: transparent;
-                color: $dark;
-                text-decoration: none;
-                text-align: center;
-                border: 1px solid $dark;
-                font-weight: bold;
-                border-radius: 10px;
-                &.active {
-                    color: #fff;
-                    background-color: #222;
-                }
-            }
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            input {
-                padding: 10px;
-                font-size: 18px;
-                background-color: transparent;
-                border: none;
-                outline: none;
-                border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-                transition: .2s;
-                text-transform: none;
-                &::placeholder {
-                    color: rgba(0, 0, 0, 0.5);
-                    text-transform: capitalize;
-                }
-                &:focus {
-                    border-color: #000;
-                }
-            }
-            .error {
-                color: rgb(189, 11, 11);
-            }
-
-        }
-        @include tablet {
-            padding: 30px;
-            h2 {
-                font-size: 30px;
-            }
-            .form-links {
-                a {
-                    font-size: 16px;
-                }
-            }
-            form input {
-                font-size: 16px;
-            }
-        }
-    }
-}
-
-.btn {
-    width: fit-content;
-    padding: 10px 30px;
-    border-radius: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    background-color: #3fe068;
-    color: $dark;
-    margin-top: 20px;
-    cursor: pointer;
-    box-shadow: 0 5px #279242;
-    transition: .1s;
-    &:hover {
-        box-shadow: none;
-        
-        translate: 0 5px;
-    }
-    @include tablet {
-        font-size: 16px;
-        padding: 10px 20px;
-    }
-}
-
-.loading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 15;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    span {
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        display: block;
-        background-color: #fff;
-        animation: loading-animation infinite ease-in .5s alternate;
-        &:nth-child(2) {
-            animation-delay: .2s;
-        }
-        &:nth-child(3) {
-            animation-delay: .4s;
-        }
-    }
-    @keyframes loading-animation {
-        from {
-            scale: 1;
-        }
-        to {
-            scale: .25;
-        }
-    }
-}
-
-.navbar {
-    background-color: $dark;
-    .container {
-        height: 80px;
-        width: min(1000px, calc(100% - 30px));
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        position: relative;
-        .toggler {
-            font-size: 25px;
-            background-color: transparent;
-            border: none;
-            outline: none;
-            display: flex;
-            margin-right: 100px;
-            color: #fff;
-            cursor: pointer;
-            @include tablet {
-                margin-right: 0;
-            }
-        }
-        nav {
-            flex-grow: 1;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            a {
-                text-decoration: none;
-                color: #Fff;
-                font-size: 18px;
-                font-weight: bold;
-                position: relative;
-                &::before {
-                    position: absolute;
-                    bottom: -2px;
-                    left: 0;
-                    right: 0;
-                    height: 2px;
-                    background-color: #ccc;
-                    border-radius: 5px;
-                }
-                &:hover::before {
-                    content: '';
-                }
-                &.active::before {
-                    content: '';
-                }
-            }
-            @include tablet {
-                position: absolute;
-                top: 100%;
-                z-index: 9;
-                width: 100%;
-                justify-content: center;
-            }
-            @include mobile {
-                gap: 10px;
-                a {
-                    font-size: 16px;
-                }
-            }
-        }
-        .logout {
-            font-size: 18px;
-            font-weight: bold;
-            padding: 5px 20px;
-            border-radius: 5px;
-            background-color: transparent;
-            border: 1px solid #fff;
-            color: #fff;
-            cursor: pointer;
-            transition: .2s;
-            &:hover {
-                background-color: rgb(194, 12, 12);
-                color: $dark;
-                border-color: transparent;
-            }
-            @include tablet {
-                margin-left: auto;
-                font-size: 14px;
-                padding: 5px 10px;
-            }
-        }
-
-        .menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 200px;
-            border-radius: 15px;
-            overflow: hidden;
-            translate: 0 60px;
-            z-index: -1;
-            opacity: 0;
-            transition: .3s;
-            
-            li {
-                background-color: $dark;
-                color: #fff;
-                padding: 15px 20px;
-                cursor: pointer;
-                transition: .2s;
-                &:hover {
-                    background-color: rgb(65, 65, 65);
-                }
-            }
-
-            &.active {
-                z-index: 12;
-                opacity: 1;
-                translate: 0 20px;
-            }
-        }
-    }
-}
-
-.layer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 10;
-}
-
-.taskList {
-    background-color: $dark;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: calc(100vh - 80px);
-    @include tablet {
-        grid-template-columns: 1fr;
-        padding-top: 50px;
-        .task {
-            border-top: none !important;
-            border-left: none !important;
-            border-right: none !important;
-            border-bottom: 1px solid #fff !important;
-        }
-    }
-    .task {
-        text-align: center;
-        padding: 20px;
-        background-color: $dark;
-        position: relative;
-        border-top: 1px solid #fff;
-        &:nth-child(odd) {
-            border-right: 1px solid #fff;
-        }
-        h3 {
-            color: #fff;
-            font-size: 25px;
-            font-family: cursive, sans-serif;
-        }
-        .boxes {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 20px 0;
-            .box {
-                display: block;
-                border: 1px solid rgba(255, 255, 255, 0.5);
-                width: 35px;
-                height: 35px;
-                border-radius: 5px;
-                &:hover {
-                    background-color: #ccc;
-                    cursor: pointer;
-                }
-                &.active {
-                    background-color: #279242;
-                    border-color: transparent;
-                }
-            }
-        }
-        .copy {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: rgba(255, 255, 255, 0.2);
-            background-color: transparent;
-            border: none;
-            outline: none;
-            font-size: 25px;
-            transition: .2s;
-            cursor: pointer;
-            &:hover {
-                color: rgba(255, 255, 255, 0.6);
-            }
-        }
-        @include mobile {
-            h3 {
-                font-size: 22px;
-            }
-            .boxes {
-                gap: 5px;
-                .box {
-                    width: 30px;
-                    height: 30px;
-                }
-            }
-            .copy {
-                font-size: 18px;
-            }
-        }
-    }
-}
-
-.customForm {
-    display: flex;
-    width: fit-content;
-    margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $light-green;
+  .formWrapper {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     padding: 50px;
-    flex-direction: column;
-    gap: 20px;
-    width: min(500px, 100%);
-    input {
-        width: 100%;
+    border-radius: 20px;
+    width: min(500px, calc(100% - 30px));
+    background: #fff;
+    h2 {
+      font-size: 40px;
+      color: $dark;
+      font-weight: 800;
+    }
+    .form-links {
+      display: flex;
+      margin: 20px 0;
+      gap: 5px;
+      a {
+        display: block;
+        flex-grow: 1;
+        padding: 10px;
+        font-size: 20px;
+        background-color: transparent;
+        color: $dark;
+        text-decoration: none;
+        text-align: center;
+        border: 1px solid $dark;
+        font-weight: bold;
+        border-radius: 10px;
+        &.active {
+          color: #fff;
+          background-color: #222;
+        }
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      input {
         padding: 10px;
         font-size: 18px;
         background-color: transparent;
         border: none;
         outline: none;
-        color: #fff;
-        border-bottom: 1px solid #fff;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+        transition: 0.2s;
         text-transform: none;
         &::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-            text-transform: capitalize;
+          color: rgba(0, 0, 0, 0.5);
+          text-transform: capitalize;
         }
         &:focus {
-            border-color: #3fe068;
+          border-color: #000;
         }
-        &:valid {
-            border-color: #3fe068;
-        }
-        @include tablet {
-            font-size: 16px;
-        }
+      }
+      .error {
+        color: rgb(189, 11, 11);
+      }
     }
     @include tablet {
-        padding: 50px 15px;
+      padding: 30px;
+      h2 {
+        font-size: 30px;
+      }
+      .form-links {
+        a {
+          font-size: 16px;
+        }
+      }
+      form input {
+        font-size: 16px;
+      }
     }
+  }
+}
+
+.btn {
+  width: fit-content;
+  padding: 10px 30px;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  background-color: #3fe068;
+  color: $dark;
+  margin-top: 20px;
+  cursor: pointer;
+  box-shadow: 0 5px #279242;
+  transition: 0.1s;
+  &:hover {
+    box-shadow: none;
+
+    // translate: 0 5px;
+    transform: translateY(5px);
+  }
+  @include tablet {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 15;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  span {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: block;
+    background-color: #fff;
+    animation: loading-animation infinite ease-in 0.5s alternate;
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+  @keyframes loading-animation {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(0.2);
+    }
+  }
+}
+
+.navbar {
+  background-color: $dark;
+  .container {
+    height: 80px;
+    width: min(1000px, calc(100% - 30px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+    .toggler {
+      font-size: 25px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      display: flex;
+      margin-right: 100px;
+      color: #fff;
+      cursor: pointer;
+      @include tablet {
+        margin-right: 0;
+      }
+    }
+    nav {
+      flex-grow: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        position: relative;
+        &::before {
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background-color: #ccc;
+          border-radius: 5px;
+        }
+        &:hover::before {
+          content: "";
+        }
+        &.active::before {
+          content: "";
+        }
+      }
+      @include tablet {
+        position: absolute;
+        top: 100%;
+        z-index: 9;
+        width: 100%;
+        justify-content: center;
+      }
+      @include mobile {
+        gap: 10px;
+        a {
+          font-size: 16px;
+        }
+      }
+    }
+    .logout {
+      font-size: 18px;
+      font-weight: bold;
+      padding: 5px 20px;
+      border-radius: 5px;
+      background-color: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.2s;
+      &:hover {
+        background-color: rgb(194, 12, 12);
+        color: $dark;
+        border-color: transparent;
+      }
+      @include tablet {
+        margin-left: auto;
+        font-size: 14px;
+        padding: 5px 10px;
+      }
+    }
+
+    .menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 200px;
+      border-radius: 15px;
+      overflow: hidden;
+      // translate: 0 60px;
+      transform: translateY(60px);
+      z-index: -1;
+      opacity: 0;
+      transition: 0.3s;
+
+      li {
+        background-color: $dark;
+        color: #fff;
+        padding: 15px 20px;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover {
+          background-color: rgb(65, 65, 65);
+        }
+      }
+
+      &.active {
+        z-index: 12;
+        opacity: 1;
+        transform: translateY(0);
+        // translate: 0 20px;
+      }
+    }
+  }
+  @include tablet {
+    padding-bottom: 80px;
+  }
+}
+
+.layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.taskList {
+  $border: 1px solid #fff;
+  background-color: $dark;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 80px);
+  border-top: $border;
+  @include tablet {
+    grid-template-columns: 1fr;
+    .task {
+      border-top: none !important;
+      border-left: none !important;
+      border-right: none !important;
+      border-bottom: 1px solid #fff !important;
+    }
+  }
+  .task {
+    text-align: center;
+    padding: 20px;
+    background-color: $dark;
+    position: relative;
+    border-bottom: $border;
+    &:nth-child(odd) {
+      border-right: $border;
+    }
+    h3 {
+      color: #fff;
+      font-size: 25px;
+      font-family: cursive, sans-serif;
+    }
+    .boxes {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
+      .box {
+        display: block;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        width: 35px;
+        height: 35px;
+        border-radius: 5px;
+        &:hover {
+          background-color: #ccc;
+          cursor: pointer;
+        }
+        &.active {
+          background-color: #279242;
+          border-color: transparent;
+        }
+      }
+    }
+    .copy {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: rgba(255, 255, 255, 0.2);
+      background-color: transparent;
+      border: none;
+      outline: none;
+      font-size: 25px;
+      transition: 0.2s;
+      cursor: pointer;
+      &:hover {
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+    @include mobile {
+      h3 {
+        font-size: 22px;
+      }
+      .boxes {
+        gap: 5px;
+        .box {
+          width: 30px;
+          height: 30px;
+        }
+      }
+      .copy {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.customForm {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 50px;
+  flex-direction: column;
+  gap: 20px;
+  width: min(500px, 100%);
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    text-transform: none;
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: capitalize;
+    }
+    &:focus {
+      border-color: #3fe068;
+    }
+    &:valid {
+      border-color: #3fe068;
+    }
+    @include tablet {
+      font-size: 16px;
+    }
+  }
+  @include tablet {
+    padding: 0 15px;
+  }
 }
 
 .sort-tasks {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 15px;
-    .task {
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 20px;
-        min-height: 100px;
-        position: relative;
-        width: min(400px, 100%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0 15px 0;
+  .task {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    min-height: 100px;
+    position: relative;
+    width: min(400px, 100%);
+    color: #fff;
+    .tools {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 5px;
+      button {
+        background-color: transparent;
         color: #fff;
-        .tools {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 5px;
-            button {
-                background-color: transparent;
-                color: #fff;
-                border: 1px solid #fff;
-                width: 30px;
-                height: 30px;
-                display: grid;
-                place-items: center;
-                cursor: pointer;
-                border-radius: 3px;
-                transition: .2s;
-                &:hover {
-                    color: #222;
-                    background-color: #fff;
-                }
-            }
+        border: 1px solid #fff;
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: 0.2s;
+        &:hover {
+          color: #222;
+          background-color: #fff;
         }
+      }
     }
+  }
 }
